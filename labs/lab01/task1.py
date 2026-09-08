@@ -1,48 +1,42 @@
-"""Аналізатор надійності паролів"""
+"""Аналізатор надійності паролів (Завдання 1, Варіант 2)."""
 
 import os
 import random
 import sys
 
-# shared
+# Додаємо кореневу папку проекту до шляху для імпорту модуля shared
 current_dir = os.path.dirname(__file__)
 project_root = os.path.abspath(os.path.join(current_dir, "../../"))
 sys.path.append(project_root)
 
 from shared.student import STUDENT_NAME, VARIANT_NUMBER
 
-# Вхідні дані
+# Вхідні дані для Варіанту 2
 PASSWORDS = [
-    "password123",
-    "Qwerty!2023",
-    "admin",
-    "MyP@ssw0rd",
-    "123456",
-    "SecurePass!",
-    "test",
-    "P@ssw0rd123",
-    "welcome",
-    "StrongP@ss1",
+    "Hello123!", "simple", "CompL3x@Pass", "password", "Str0ng#2023", 
+    "weak", "MySecur3!", "12345", "Advanced@1", "basic"
 ]
 
 CRITERIA = {
-    "min_length": 8,
+    "min_length": 10,
     "require_digits": True,
     "require_upper": True,
-    "require_special": True,
+    "require_special": True
 }
 
-FORBIDDEN_PASSWORDS = {"password", "123456", "admin", "test", "welcome", "qwerty"}
+FORBIDDEN_PASSWORDS = {
+    "password", "simple", "weak", "basic", "12345", "hello"
+}
 
 
 def analyze_passwords():
-    """Оцінює надійність паролів згідно з критеріями"""
+    """Оцінює надійність паролів згідно з критеріями."""
     print(f"Студент: {STUDENT_NAME}, Варіант: {VARIANT_NUMBER}\n")
 
-    # Копіюємо початковий список
-    passwords_list = (
-        PASSWORDS.copy()
-    )  # Генеруємо 3 випадкові індекси та дублюємо паролі
+    # Копіюємо початковий список, щоб уникнути зміни оригіналу
+    passwords_list = PASSWORDS.copy()
+
+    # Генеруємо 3 випадкові індекси та дублюємо паролі
     for _ in range(3):
         random_idx = random.randint(0, len(PASSWORDS) - 1)
         passwords_list.append(PASSWORDS[random_idx])
