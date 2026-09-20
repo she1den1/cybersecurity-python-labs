@@ -1,0 +1,162 @@
+[
+    {
+        "event": "login",
+        "user": "devops_lead",
+        "result": "success",
+        "timestamp": "2026-09-09 18:10:16",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "analyst",
+        "result": "failure",
+        "timestamp": "2026-09-09 18:10:16",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "unknown",
+        "result": "failure",
+        "timestamp": "2026-09-09 18:10:16",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "",
+        "result": "failure (ValueError)",
+        "timestamp": "2026-09-09 18:10:16",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "devops_lead",
+        "result": "success",
+        "timestamp": "2026-09-20 10:06:05",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "analyst",
+        "result": "failure",
+        "timestamp": "2026-09-20 10:06:05",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "unknown",
+        "result": "failure",
+        "timestamp": "2026-09-20 10:06:05",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "",
+        "result": "failure (ValueError)",
+        "timestamp": "2026-09-20 10:06:05",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "devops_lead",
+        "result": "success",
+        "timestamp": "2026-09-20 10:14:12",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "analyst",
+        "result": "failure",
+        "timestamp": "2026-09-20 10:14:12",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "unknown",
+        "result": "failure",
+        "timestamp": "2026-09-20 10:14:12",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "",
+        "result": "failure (ValueError)",
+        "timestamp": "2026-09-20 10:14:12",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "devops_lead",
+        "result": "success",
+        "timestamp": "2026-09-20 10:16:29",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "analyst",
+        "result": "failure",
+        "timestamp": "2026-09-20 10:16:29",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "unknown",
+        "result": "failure",
+        "timestamp": "2026-09-20 10:16:29",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "",
+        "result": "failure (ValueError)",
+        "timestamp": "2026-09-20 10:16:29",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "devops_lead",
+        "result": "success",
+        "timestamp": "2026-09-20 10:17:19",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "analyst",
+        "result": "failure",
+        "timestamp": "2026-09-20 10:17:19",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "unknown",
+        "result": "failure",
+        "timestamp": "2026-09-20 10:17:19",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "",
+        "result": "failure (ValueError)",
+        "timestamp": "2026-09-20 10:17:19",
+        "args": [],
+        "kwargs": {}
+    }
+]
