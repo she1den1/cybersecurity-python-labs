@@ -1,10 +1,10 @@
 """Безпечне хешування, CSV-база та JSON-логування (Завдання 3, Варіант 2)."""
 
+import csv
+import hashlib
+import json
 import os
 import sys
-import csv
-import json
-import hashlib
 from datetime import datetime
 from functools import wraps
 
@@ -24,11 +24,11 @@ LOG_JSON_PATH = os.path.join(DATA_DIR, "log.json")
 
 class ValidationError(Exception):
     """Власний клас винятку для помилок валідації пароля."""
-    pass
 
 
 def log_event(func):
     """Декоратор для логування спроб входу у файл JSON."""
+
     @wraps(func)
     def wrapper(username, password, *args, **kwargs):
         result = "failure"
@@ -47,27 +47,27 @@ def log_event(func):
                 "result": result,
                 "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 "args": args,
-                "kwargs": kwargs
+                "kwargs": kwargs,
             }
-            
+
             os.makedirs(DATA_DIR, exist_ok=True)
-            
+
             logs = []
             if os.path.exists(LOG_JSON_PATH):
                 try:
                     with open(LOG_JSON_PATH, "r", encoding="utf-8") as f:
                         logs = json.load(f)
-                except (json.JSONDecodeError, IOError):
+                except (OSError, json.JSONDecodeError):
                     logs = []
-                    
+
             logs.append(log_entry)
-            
+
             try:
                 with open(LOG_JSON_PATH, "w", encoding="utf-8") as f:
                     json.dump(logs, f, indent=4, ensure_ascii=False)
-            except IOError as e:
+            except OSError as e:
                 print(f"Помилка запису логів: {e}")
-                
+
     return wrapper
 
 
@@ -75,12 +75,14 @@ def generate_hash(password: str, salt: str = "00000") -> str:
     """Генерує sha3_224 хеш від пароля та солі."""
     if not password or not salt:
         raise ValueError("Пароль або сіль не можуть бути порожніми.")
-    
+
     if len(password) < MIN_PASSWORD_LENGTH:
-        raise ValidationError(f"Пароль надто короткий. Мінімум {MIN_PASSWORD_LENGTH} символів.")
-        
+        raise ValidationError(
+            f"Пароль надто короткий. Мінімум {MIN_PASSWORD_LENGTH} символів."
+        )
+
     salted_password = password + salt
-    return hashlib.sha3_224(salted_password.encode('utf-8')).hexdigest()
+    return hashlib.sha3_224(salted_password.encode("utf-8")).hexdigest()
 
 
 def create_user(username, password):
@@ -92,7 +94,7 @@ def create_user(username, password):
 def create_users(users_list):
     """Створює CSV базу користувачів."""
     os.makedirs(DATA_DIR, exist_ok=True)
-    
+
     try:
         with open(USERS_CSV_PATH, mode="w", newline="", encoding="utf-8") as file:
             writer = csv.writer(file)
@@ -106,7 +108,7 @@ def create_users(users_list):
         print(f"База даних успішно створена: {USERS_CSV_PATH}")
     except PermissionError:
         print("Помилка: Немає прав на запис файлу бази даних.")
-    except IOError as e:
+    except OSError as e:
         print(f"Помилка вводу/виводу: {e}")
 
 
@@ -115,50 +117,32 @@ def login(username: str, password: str) -> bool:
     """Автентифікує користувача за базою CSV."""
     if not username or not password:
         raise ValueError("Логін або пароль порожні.")
-        
+
     try:
         with open(USERS_CSV_PATH, mode="r", encoding="utf-8") as file:
             reader = csv.DictReader(file)
             users_db = list(reader)
-            
+
         try:
             login_hash = generate_hash(password, PERSONAL_SALT)
         except ValidationError:
             return False
-            
+
         for user in users_db:
             if user["username"] == username and user["password_hash"] == login_hash:
                 return True
         return False
-        
+
     except FileNotFoundError:
         print("Помилка: База даних користувачів не знайдена.")
         raise
-    except (PermissionError, IOError) as e:
+    except (OSError, PermissionError) as e:
         print(f"Помилка читання бази: {e}")
         raise
 
 
-def main():
-    print(f"Студент: {STUDENT_NAME}, Варіант: {VARIANT_NUMBER}\n")
-    
-    # Кортеж із 10 користувачів\
-    users_to_register = (
-        ("devops_lead", "Pipeline2026@secure"),
-        ("admin_usr", "SuperSecret123!"),
-        ("user01", "Short1!"),  # ValidationError (менше 10 символів)
-        ("guest", ""),          # ValueError
-        ("analyst", "AnalyzeThis#2024"),
-        ("manager", "ManagerPass!99"),
-        ("tester", "TestTestTest!"),
-        ("intern", "InternPass!123"),
-        ("hacker", "HackThePlanet1"),
-        ("ceo_boss", "BigBossPassword!")
-    )
-    
-    print("--- Реєстрація користувачів ---")
-    create_users(users_to_register)
-    
+def read_users():
+    """Читає вміст CSV-файлу та виводить його на екран у вигляді таблиці."""
     print("\n--- Читання бази даних ---")
     try:
         with open(USERS_CSV_PATH, mode="r", encoding="utf-8") as file:
@@ -166,25 +150,49 @@ def main():
             for row in reader:
                 print(f"{row[0]:<15} | {row[1]}")
     except FileNotFoundError:
-        print("Файл бази даних не знайдено.")
-        
+        print("Помилка: База даних користувачів не знайдена.")
+        raise
+    except (OSError, PermissionError) as e:
+        print(f"Помилка читання бази: {e}")
+        raise
+
+
+def main():
+    print(f"Студент: {STUDENT_NAME}, Варіант: {VARIANT_NUMBER}\n")
+
+    # Кортеж із 10 користувачів
+    users_to_register = (
+        ("devops_lead", "Pipeline2026@secure"),
+        ("admin_usr", "SuperSecret123!"),
+        ("user01", "Short1!"),  # ValidationError (менше 10 символів)
+        ("guest", ""),  # ValueError
+        ("analyst", "AnalyzeThis#2024"),
+        ("manager", "ManagerPass!99"),
+        ("tester", "TestTestTest!"),
+        ("intern", "InternPass!123"),
+        ("hacker", "HackThePlanet1"),
+        ("ceo_boss", "BigBossPassword!"),
+    )
+
+    print("--- Реєстрація користувачів ---")
+    create_users(users_to_register)
+
+    # Викликаємо нову функцію для читання БД
+    read_users()
+
     print("\n--- Перевірка авторизації ---")
     test_logins = [
-        ("devops_lead", "Pipeline2026@secure"), # Успішний вхід
-        ("analyst", "WrongPassword!"),          # Неправильний пароль
-        ("unknown", "SomePass123!"),            # Неіснуючий юзер
-        ("", "Pass!12345"),                     # Помилка ValueError
+        ("devops_lead", "Pipeline2026@secure"),  # Успішний вхід
+        ("analyst", "WrongPassword!"),  # Неправильний пароль
+        ("unknown", "SomePass123!"),  # Неіснуючий юзер
+        ("", "Pass!12345"),  # Помилка ValueError
     ]
-    
+
     for user, pwd in test_logins:
-        try:
-            success = login(user, pwd)
-            status = "УСПІХ" if success else "ВІДМОВА"
-            print(f"Вхід для {user:<12}: {status}")
-        except Exception as e:
-            print(f"Вхід для {user:<12}: ПОМИЛКА ({type(e).__name__})")
-            
-    print("\nПеревір логування! Файли збережено у папку data.")
+        success = login(user, pwd)
+        status = "УСПІХ" if success else "ВІДМОВА"
+        print(f"Вхід для {user:<12}: {status}")
+
 
 if __name__ == "__main__":
     main()

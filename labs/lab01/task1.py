@@ -12,20 +12,26 @@ from shared.student import STUDENT_NAME, VARIANT_NUMBER
 
 # Вхідні дані
 PASSWORDS = [
-    "Hello123!", "simple", "CompL3x@Pass", "password", "Str0ng#2023", 
-    "weak", "MySecur3!", "12345", "Advanced@1", "basic"
+    "Hello123!",
+    "simple",
+    "CompL3x@Pass",
+    "password",
+    "Str0ng#2023",
+    "weak",
+    "MySecur3!",
+    "12345",
+    "Advanced@1",
+    "basic",
 ]
 
 CRITERIA = {
     "min_length": 10,
     "require_digits": True,
     "require_upper": True,
-    "require_special": True
+    "require_special": True,
 }
 
-FORBIDDEN_PASSWORDS = {
-    "password", "simple", "weak", "basic", "12345", "hello"
-}
+FORBIDDEN_PASSWORDS = {"password", "simple", "weak", "basic", "12345", "hello"}
 
 
 def analyze_passwords():
