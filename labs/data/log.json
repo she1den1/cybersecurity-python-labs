@@ -478,5 +478,69 @@
         "timestamp": "2026-09-21 11:02:33",
         "args": [],
         "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "devops_lead",
+        "result": "success",
+        "timestamp": "2026-09-21 11:13:54",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "analyst",
+        "result": "failure",
+        "timestamp": "2026-09-21 11:13:54",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "unknown",
+        "result": "failure",
+        "timestamp": "2026-09-21 11:13:54",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "",
+        "result": "failure (ValueError)",
+        "timestamp": "2026-09-21 11:13:54",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "devops_lead",
+        "result": "success",
+        "timestamp": "2026-09-21 08:18:36",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "analyst",
+        "result": "failure",
+        "timestamp": "2026-09-21 08:18:36",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "unknown",
+        "result": "failure",
+        "timestamp": "2026-09-21 08:18:36",
+        "args": [],
+        "kwargs": {}
+    },
+    {
+        "event": "login",
+        "user": "",
+        "result": "failure (ValueError)",
+        "timestamp": "2026-09-21 08:18:36",
+        "args": [],
+        "kwargs": {}
     }
 ]

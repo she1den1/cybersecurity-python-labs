@@ -5,7 +5,7 @@ import hashlib
 import json
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 from functools import wraps
 
 current_dir = os.path.dirname(__file__)
@@ -45,7 +45,7 @@ def log_event(func):
                 "event": "login",
                 "user": username,
                 "result": result,
-                "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"),
                 "args": args,
                 "kwargs": kwargs,
             }

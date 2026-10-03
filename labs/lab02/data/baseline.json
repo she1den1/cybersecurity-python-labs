@@ -1,0 +1,32 @@
+[
+  {
+    "path": "config/app.conf",
+    "sha256": "1f617b878bd7e7294c92ac91b300973ed43fa4050a29f3fc358d73e572c08d53",
+    "size": 47,
+    "modified": "2026-09-20T12:00:00"
+  },
+  {
+    "path": "config/firewall.conf",
+    "sha256": "a3a361f90ba3fc0879419c6078873395dacec437e73818c2830216be30512678",
+    "size": 32,
+    "modified": "2026-09-20T12:00:00"
+  },
+  {
+    "path": "scripts/backup.sh",
+    "sha256": "0ce923617161cfd6cc7fe94207bcf4bf037409529b1d47f35fe1417c9b8c9a82",
+    "size": 28,
+    "modified": "2026-09-20T12:00:00"
+  },
+  {
+    "path": "README.txt",
+    "sha256": "b9cd95702f1623b351d18f2ba245292eb28cd3d85197caa21cc355ac197a0e64",
+    "size": 42,
+    "modified": "2026-09-20T12:00:00"
+  },
+  {
+    "path": "obsolete.txt",
+    "sha256": "d9a56a5bc441d1bc541d2b2fae6c57624160fd7697a103c987d3f430338103a4",
+    "size": 40,
+    "modified": "2026-09-20T12:00:00"
+  }
+]
